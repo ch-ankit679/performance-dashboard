@@ -83,3 +83,8 @@ body{
   font-variant-numeric: tabular-nums;
   font-weight:700;
 }
+
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
