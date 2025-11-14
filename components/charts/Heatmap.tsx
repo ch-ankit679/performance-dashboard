@@ -77,7 +77,7 @@ export default function Heatmap({ data, timeStart, timeEnd }: {
 
   return (
     <div className="card">
-      <div style={{ fontWeight: 700 }}>Heatmap</div>
+      <div style={{ fontWeight: 700, marginBottom: 8 }}>Heatmap</div>
       <div style={{ height: 240 }}>
         <canvas
           ref={ref}

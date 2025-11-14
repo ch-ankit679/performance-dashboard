@@ -56,7 +56,7 @@ export default function LineChart({
       for (let i = 0; i < pts.length; i++) {
         const p = pts[i];
         const x = p.x;
-        const y = (p.yMin + p.yMax) / 2; // Midpoint for smooth line
+        const y = (p.yMin + p.yMax) / 2;
 
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -74,9 +74,9 @@ export default function LineChart({
   }, [data, timeStart, timeEnd]);
 
   return (
-    <div style={{ height: 420 }} className="card">
+    <div className="card">
       <div style={{ fontWeight: 700, marginBottom: 8 }}>Line Chart</div>
-      <div style={{ width: "100%", height: "360px" }}>
+      <div style={{ height: 240 }}>
         <canvas
           ref={canvasRef}
           style={{

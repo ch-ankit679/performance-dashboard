@@ -13,8 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <main style={{ height: "100vh", width: "100vw" }}>{children}</main>
+      <body className="min-h-screen w-full bg-[#020617] text-white">
+        {children}
       </body>
     </html>
   );

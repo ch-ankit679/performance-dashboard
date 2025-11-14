@@ -29,7 +29,7 @@ export default function DashboardShell() {
   const [dragEndX, setDragEndX] = useState<number | null>(null);
   const scrollSpeed = 0.5;
 
-  // 🌀 Auto-scroll for DataTable
+  // Auto-scroll for data table
   useEffect(() => {
     const container = tableContainerRef.current;
     if (!container) return;
@@ -46,21 +46,21 @@ export default function DashboardShell() {
     return () => cancelAnimationFrame(frameId);
   }, []);
 
-  // 🧠 Define visible time window
+  // Define visible time window
   const latestTimestamp = data.length ? data[data.length - 1].t : Date.now();
   const earliestTimestamp = data.length ? data[0].t : latestTimestamp;
 
   let timeEnd = latestTimestamp;
   let timeStart = latestTimestamp - timeRangeMs * (1 / zoom) + pan;
 
-  // ✅ Fix: maintain visible window width even when data < 60s
+  // Ensure visible window width (fix when data shorter than window)
   if (timeStart < earliestTimestamp) {
     timeStart = earliestTimestamp;
     timeEnd = timeStart + timeRangeMs * (1 / zoom);
   }
   if (timeEnd <= timeStart) timeEnd = timeStart + 1000;
 
-  // 🔹 Filtering logic
+  // Filtering logic
   const filteredData = useMemo(() => {
     if (!filters.field) return data;
     return data.filter((d: any) => {
@@ -78,7 +78,7 @@ export default function DashboardShell() {
     setPendingFilters({});
   };
 
-  // 🖱️ Rubber-band zoom
+  // Rubber-band zoom
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!chartContainerRef.current) return;
     setIsDragging(true);
@@ -113,10 +113,10 @@ export default function DashboardShell() {
     setPan(0);
   };
 
-  // ✅ Reset data (using DataProvider’s reset)
+  // Reset data
   const handleReset = () => {
     reset();
-    setFadeKey((k) => k + 1); // triggers fade animation
+    setFadeKey((k) => k + 1);
   };
 
   const chartProps = { data: filteredData, timeStart, timeEnd };
@@ -133,7 +133,7 @@ export default function DashboardShell() {
 
   return (
     <>
-      {/* ===== SIDEBAR ===== */}
+      {/* SIDEBAR */}
       <aside className="sidebar card">
         <div className="header">
           <div>
@@ -143,7 +143,7 @@ export default function DashboardShell() {
           <PerformanceMonitor />
         </div>
 
-        {/* 🔹 Data Filtering */}
+        {/* Data Filtering */}
         <div className="card" style={{ marginTop: 12, padding: 16 }}>
           <div style={{ fontWeight: 700, marginBottom: 8 }}>Data Filtering</div>
           <div style={{ display: "grid", gap: 8 }}>
@@ -200,7 +200,7 @@ export default function DashboardShell() {
         <ZoomPanControls zoom={zoom} onZoomChange={setZoom} pan={pan} onPanChange={setPan} />
       </aside>
 
-      {/* ===== MAIN SECTION ===== */}
+      {/* MAIN */}
       <section className="content">
         <div className="card header">
           <div style={{ fontSize: 20, fontWeight: 700 }}>Manage Load</div>
@@ -250,10 +250,10 @@ export default function DashboardShell() {
           ))}
         </div>
 
-        {/* ===== CHART AREA ===== */}
-        <div className="card canvas-wrapper" style={{ display: "flex", gap: 12 }}>
+        <div className="card chart-table-wrapper">
           <div
             ref={chartContainerRef}
+            className="chart-panel"
             style={{ flex: 1, position: "relative" }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -267,7 +267,7 @@ export default function DashboardShell() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                style={{ position: "absolute", width: "100%" }}
+                style={{ position: "absolute", width: "100%", height: "100%" }}
               >
                 {renderChart()}
               </motion.div>
@@ -287,8 +287,7 @@ export default function DashboardShell() {
             )}
           </div>
 
-          {/* ===== DATA TABLE ===== */}
-          <div style={{ width: 360 }}>
+          <div className="data-table-panel">
             <div className="card">
               <div style={{ fontWeight: 700 }}>Data Table</div>
               <div ref={tableContainerRef} style={{ maxHeight: 420, overflowY: "auto" }}>

@@ -93,7 +93,7 @@ export default function BarChart({
 
   return (
     <div className="card">
-      <div style={{ fontWeight: 700 }}>Bar Chart</div>
+      <div style={{ fontWeight: 700, marginBottom: 8  }}>Bar Chart</div>
       <div style={{ height: 240 }}>
         <canvas
           ref={canvasRef}

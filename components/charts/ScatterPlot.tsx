@@ -51,7 +51,7 @@ export default function ScatterPlot({ data, timeStart, timeEnd }: {
   }, [data, timeStart, timeEnd]);
   return (
     <div className="card">
-      <div style={{ fontWeight: 700 }}>Scatter Plot</div>
+      <div style={{ fontWeight: 700, marginBottom: 8}}>Scatter Plot</div>
       <div style={{ height: 240 }}>
         <canvas ref={ref} style={{ width: "100%", height: "100%",background: "linear-gradient(180deg,#0f1724,#0b1220)", borderRadius:12}} />
       </div>
