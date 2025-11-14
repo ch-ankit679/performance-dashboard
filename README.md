@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project README
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is built using **Next.js**, featuring interactive dashboards, canvas-based charts, and performance‑optimized rendering. The application ensures smooth rendering even with heavy chart workloads and supports modern browsers.
+
+---
+
+## 🚀 Setup Instructions
+
+### **1. Clone the Repository**
+
+```bash
+git clone <repo-url>
+cd <project-folder>
+```
+
+### **2. Install Dependencies**
+
+```bash
+npm install
+```
+
+### **3. Start Development Server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your app will now run at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Performance Testing Instructions
 
-## Learn More
+### **1. Enable React Profiler**
 
-To learn more about Next.js, take a look at the following resources:
+Open React DevTools → **Profiler** → record interactions while navigating charts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **2. Inspect FPS (Frames Per Second)**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Use Chrome DevTools → **Performance** tab → enable FPS meter.
 
-## Deploy on Vercel
+### **3. Memory Usage**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Chrome DevTools → **Memory** → Take heap snapshots while interacting with different charts.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **4. Canvas Stress Test**
+
+Perform:
+
+* continuous zooming
+* panning
+* rendering large datasets
+
+Monitor:
+
+* Re‑render counts
+* Frame drops
+* GC cycles
+
+---
+
+## 🌐 Browser Compatibility
+
+Fully tested on:
+
+* **Chrome (Recommended)**
+* **Edge**
+* **Firefox (Canvas performance may slightly differ)**
+
+Not supported:
+
+* Internet Explorer
+
+---
+
+## 📊 Feature Overview (With Screenshots Placeholder)
+
+### **✔ Interactive Line Chart**
+
+* Canvas-rendered for performance
+* Smooth animations
+
+### **✔ Bar & Scatter Charts**
+
+* React + Canvas hybrid approach
+
+### **✔ Heatmap Visualization**
+
+* Optimized color‑mapping
+* Intelligent canvas batching
+
+### Screenshots
+
+*(Replace placeholders with actual image URLs)*
+
+```
+![Dashboard](./screenshots/dashboard.png)
+![Line Chart](./screenshots/linechart.png)
+![Heatmap](./screenshots/heatmap.png)
+```
+
+---
+
+## ⚡ Next.js Performance Optimizations Used
+
+### **1. Server-Side Rendering (SSR)**
+
+Used for fast initial paint and SEO.
+
+### **2. Dynamic Imports**
+
+Large chart components lazy‑loaded:
+
+```ts
+const LineChart = dynamic(() => import("../charts/LineChart"), { ssr: false });
+```
+
+### **3. Image Optimization**
+
+Using `next/image` for responsive and cached image delivery.
+
+### **4. API Routes Optimization**
+
+All expensive calculations moved to server when required.
+
+### **5. Caching Strategies**
+
+* Browser caching
+* Server caching of static assets
+
+---
+
+## 📦 Project Structure
+
+```
+components/
+  charts/
+    LineChart.tsx
+    BarChart.tsx
+    ScatterPlot.tsx
+    Heatmap.tsx
+  DashboardShell.tsx
+globals.css
+```
+
+---
+
+## 📬 Contact
+
+Feel free to reach out for improvements or issues.
