@@ -21,7 +21,7 @@ export default function LandingPage() {
           </Link>
 
           <a
-            href="#"
+            href="https://github.com/ch-ankit679/performance-dashboard"
             target="_blank"
             className="landing-btn landing-btn-secondary"
           >
