@@ -20,15 +20,12 @@ export function useChartRenderer(
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     let alive = true;
 
     const render = () => {
       if (!alive) return;
-
       const w = Math.floor(canvas.clientWidth * devicePixelRatio);
       const h = Math.floor(canvas.clientHeight * devicePixelRatio);
-
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
@@ -38,15 +35,17 @@ export function useChartRenderer(
 
       ctx.clearRect(0, 0, w, h);
 
-      const { timeStart: start, timeEnd: end } = opts;
+      const start = opts.timeStart;
+      const end = opts.timeEnd;
 
       if (data.length > 0) {
         const pts = decimateToPixels(data, w, h, start, end);
 
         if (pts.length === 0) {
+          // 🔹 No data in visible range
           ctx.fillStyle = "rgba(255,255,255,0.05)";
           ctx.fillRect(0, 0, w, h);
-          ctx.fillStyle = "rgba(200,200,200,0.6)";
+          ctx.fillStyle = "rgba(200,200,200,0.5)";
           ctx.font = `${14 * devicePixelRatio}px sans-serif`;
           ctx.fillText("Waiting for data...", 10 * devicePixelRatio, 20 * devicePixelRatio);
         } else {

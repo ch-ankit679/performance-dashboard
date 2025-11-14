@@ -21,7 +21,7 @@ export default function DashboardShell() {
   const [pendingFilters, setPendingFilters] = useState<{ field?: string; min?: number; max?: number }>({});
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState(0);
-  const [fadeKey, setFadeKey] = useState(0);
+  const [fadeKey, setFadeKey] = useState(0); // for reset animation
   const tableContainerRef = useRef<HTMLDivElement | null>(null);
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -53,13 +53,7 @@ export default function DashboardShell() {
   let timeEnd = latestTimestamp;
   let timeStart = latestTimestamp - timeRangeMs * (1 / zoom) + pan;
 
-  // ✅ Adjust window dynamically when data range < selected time range
-  const dataDuration = latestTimestamp - earliestTimestamp;
-  if (dataDuration < timeRangeMs) {
-    timeStart = earliestTimestamp;
-    timeEnd = latestTimestamp;
-  }
-
+  // ✅ Fix: maintain visible window width even when data < 60s
   if (timeStart < earliestTimestamp) {
     timeStart = earliestTimestamp;
     timeEnd = timeStart + timeRangeMs * (1 / zoom);
@@ -119,26 +113,21 @@ export default function DashboardShell() {
     setPan(0);
   };
 
-  // ✅ Reset data
+  // ✅ Reset data (using DataProvider’s reset)
   const handleReset = () => {
     reset();
-    setFadeKey((k) => k + 1);
+    setFadeKey((k) => k + 1); // triggers fade animation
   };
 
   const chartProps = { data: filteredData, timeStart, timeEnd };
 
   const renderChart = () => {
     switch (chartType) {
-      case "line":
-        return <LineChart {...chartProps} />;
-      case "bar":
-        return <BarChart {...chartProps} />;
-      case "scatter":
-        return <ScatterPlot {...chartProps} />;
-      case "heatmap":
-        return <Heatmap {...chartProps} />;
-      default:
-        return null;
+      case "line": return <LineChart {...chartProps} />;
+      case "bar": return <BarChart {...chartProps} />;
+      case "scatter": return <ScatterPlot {...chartProps} />;
+      case "heatmap": return <Heatmap {...chartProps} />;
+      default: return null;
     }
   };
 
@@ -202,12 +191,8 @@ export default function DashboardShell() {
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8 }}>
-            <button className="button" onClick={handleClearFilters}>
-              Clear
-            </button>
-            <button className="button active" onClick={handleApplyFilters}>
-              Apply
-            </button>
+            <button className="button" onClick={handleClearFilters}>Clear</button>
+            <button className="button active" onClick={handleApplyFilters}>Apply</button>
           </div>
         </div>
 
