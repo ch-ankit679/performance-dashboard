@@ -93,14 +93,13 @@ Not supported:
 
 ### Screenshots
 
-```
 ![Landing Page](./public/screenshots/landing-page.jpg)
 ![Dashboard](./public/screenshots/dashboard.jpg)
 ![Line Chart](./public/screenshots/line-chart.jpg)
 ![Bar Chart](./public/screenshots/bar-chart.jpg)
 ![Scatterplot](./public/screenshots/scatterplot.jpg)
 ![Heatmap](./public/screenshots/heatmap.jpg)
-```
+
 
 ---
 
