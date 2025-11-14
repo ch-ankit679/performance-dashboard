@@ -11,8 +11,8 @@ This project is built using **Next.js**, featuring interactive dashboards, canva
 ### **1. Clone the Repository**
 
 ```bash
-git clone <repo-url>
-cd <project-folder>
+git clone https://github.com/ch-ankit679/performance-dashboard.git
+cd performance-dashboard
 ```
 
 ### **2. Install Dependencies**
@@ -93,13 +93,13 @@ Not supported:
 
 ### Screenshots
 
-*(Replace placeholders with actual image URLs)*
+![Landing Page](./public/screenshots/landing-page.jpg)
+![Dashboard](./public/screenshots/dashboard.jpg)
+![Line Chart](./public/screenshots/line-chart.jpg)
+![Bar Chart](./public/screenshots/bar-chart.jpg)
+![Scatterplot](./public/screenshots/scatterplot.jpg)
+![Heatmap](./public/screenshots/heatmap.jpg)
 
-```
-![Dashboard](./screenshots/dashboard.png)
-![Line Chart](./screenshots/linechart.png)
-![Heatmap](./screenshots/heatmap.png)
-```
 
 ---
 
@@ -135,14 +135,49 @@ All expensive calculations moved to server when required.
 ## 📦 Project Structure
 
 ```
-components/
-  charts/
-    LineChart.tsx
-    BarChart.tsx
-    ScatterPlot.tsx
-    Heatmap.tsx
-  DashboardShell.tsx
-globals.css
+performance-dashboard/
+├── app/
+│   ├── dashboard/
+│   │   ├── page.tsx              
+│   │   └── layout.tsx
+│   ├── api/
+│   │   └── data/
+│   │       └── route.ts          
+│   ├── globals.css
+│   └── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── charts/
+│   │   ├── LineChart.tsx
+│   │   ├── BarChart.tsx
+│   │   ├── ScatterPlot.tsx
+│   │   └── Heatmap.tsx
+│   ├── controls/
+│   │   ├── FilterPanel.tsx
+│   │   └── TimeRangeSelector.tsx
+│   │   └── ZoomPanControls.tsx
+│   ├── ui/
+│   │   ├── DataTable.tsx
+│   │   └── PerformanceMonitor.tsx
+│   │   └── DashboardShell.tsx
+│   └── providers/
+│       └── DataProvider.tsx
+├── hooks/
+│   ├── useDataStream.ts
+│   ├── useChartRenderer.ts
+│   ├── usePerformanceMonitor.ts
+│   └── useVirtualization.ts
+├── lib/
+│   ├── dataGenerator.ts
+│   ├── performanceUtils.ts
+│   ├── canvasUtils.ts
+│   └── types.ts
+├── public/
+├── package.json
+├── next.config.js
+├── tsconfig.json
+├── README.md
+└── PERFORMANCE.md             
 ```
 
 ---
