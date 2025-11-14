@@ -9,9 +9,7 @@ Performance tests were conducted using Chrome DevTools, React Profiler, and cust
 | Scenario                       | Avg FPS    | Notes                                                     |
 | ------------------------------ | ---------- | --------------------------------------------------------- |
 | Idle dashboard                 | ~58–60 FPS | No canvas redrawing                                       |
-| Interacting with Line Chart    | ~55–58 FPS | GPU‑accelerated canvas maintained smooth frame rate       |
-| Heatmap zoom/pan               | ~48–55 FPS | Heavy pixel computation; optimized with batching          |
-| Stress test (10k+ data points) | ~40–50 FPS | Canvas batching + memoization helped maintain performance |
+| Interacting with Charts.       | ~55–58 FPS | GPU‑accelerated canvas maintained smooth frame rate       |
 
 ### **Memory Usage**
 
